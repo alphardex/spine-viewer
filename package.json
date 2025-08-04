@@ -1,0 +1,48 @@
+{
+  "name": "@alphardex/spine-viewer",
+  "version": "1.0.3",
+  "type": "module",
+  "description": "A custom HTML element for displaying Spine animations using PIXI.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "spine",
+    "animation",
+    "pixi",
+    "web-component",
+    "custom-element",
+    "html"
+  ],
+  "author": "alphardex",
+  "license": "MIT",
+  "peerDependencies": {
+    "pixi.js": "^7.0.0",
+    "pixi-spine": "^4.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "rollup": "^3.0.0",
+    "typescript": "^5.0.0",
+    "tslib": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alphardex/spine-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alphardex/spine-viewer/issues"
+  },
+  "homepage": "https://github.com/alphardex/spine-viewer#readme"
+}
