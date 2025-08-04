@@ -1,6 +1,8 @@
-# Spine Viewer Web Component
+# Spine Viewer
 
 一个用于在网页中显示 Spine 动画的自定义 HTML 元素，基于 PIXI.js 构建。
+
+注：支持 Spine 4.1 及以下版本，4.2 暂不支持。
 
 ## 安装
 
