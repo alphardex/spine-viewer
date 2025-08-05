@@ -32,7 +32,7 @@ import "@alphardex/spine-viewer";
 <spine-viewer
   src="/path/to/your/animation.skel"
   animation-name="idle"
-  scale="0.6"
+  scale="0.3"
 >
 </spine-viewer>
 ```
@@ -59,7 +59,7 @@ console.log("可用动画:", animations);
 | ---------------- | ------ | ------ | ------------------------------ |
 | `src`            | string | -      | Spine .skel 文件的路径（必需） |
 | `animation-name` | string | 'idle' | 要播放的动画名称               |
-| `scale`          | number | 0.6    | 缩放比例                       |
+| `scale`          | number | 0.3    | 缩放比例                       |
 
 ## API 方法
 
@@ -79,6 +79,27 @@ console.log("可用动画:", animations);
 设置动画的缩放比例。
 
 - `scale` (number): 缩放比例
+
+### `renderSpine(options)`
+
+切换到新的Spine动画文件。
+
+- `options` (object): 配置选项
+  - `src` (string): 新的Spine .skel 文件路径
+  - `animationName` (string, 可选): 要播放的动画名称，如果不指定则自动选择第一个动画
+
+```javascript
+// 切换到新的Spine文件
+viewer.renderSpine({
+  src: "/path/to/new-character.skel",
+  animationName: "idle"
+});
+
+// 只指定文件路径，自动选择动画
+viewer.renderSpine({
+  src: "/path/to/new-character.skel"
+});
+```
 
 ## 样式
 
@@ -126,7 +147,7 @@ animations/
     <spine-viewer
       src="/animations/character.skel"
       animation-name="idle"
-      scale="0.6"
+      scale="0.3"
     >
     </spine-viewer>
   </body>
@@ -169,11 +190,3 @@ MIT
 ## 贡献
 
 欢迎提交 Issue 和 Pull Request！
-
-## 更新日志
-
-### 1.0.0
-
-- 初始版本
-- 支持基础 Spine 动画播放
-- 支持动态动画切换和缩放
