@@ -14,6 +14,7 @@
   "dependencies": {
     "@alphardex/spine-viewer": "^1.0.4",
     "pixi-spine": "^4.0.6",
-    "pixi.js": "^7.4.3"
+    "pixi.js": "^7.4.3",
+    "rollup-plugin-visualizer": "^6.0.3"
   }
 }
