@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spine Viewer</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      spine-viewer {
+        width: 800px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <spine-viewer
+      src="/kanade/sd_main.skel"
+      animation-name="w_pure_idle01_f"
+    ></spine-viewer>
+    <script type="module">
+      // import "../dist/index.esm.js";
+      import "@alphardex/spine-viewer";
+    </script>
+  </body>
+</html>

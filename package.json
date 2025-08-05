@@ -1,6 +1,6 @@
 {
   "name": "@alphardex/spine-viewer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "description": "A custom HTML element for displaying Spine animations using PIXI.js",
   "main": "dist/index.js",
@@ -27,15 +27,12 @@
   "author": "alphardex",
   "license": "MIT",
   "peerDependencies": {
-    "pixi.js": "^7.0.0",
-    "pixi-spine": "^4.0.0"
+    "pixi.js": ">=7.0.0 <8.0.0",
+    "pixi-spine": ">=4.0.0 <5.0.0"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "@rollup/plugin-typescript": "^11.0.0",
-    "rollup": "^3.0.0",
-    "typescript": "^5.0.0",
-    "tslib": "^2.0.0"
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.46.2"
   },
   "repository": {
     "type": "git",

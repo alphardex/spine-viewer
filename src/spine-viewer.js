@@ -23,18 +23,11 @@ class SpineViewer extends HTMLElement {
       this.resizeObserver.disconnect();
       this.resizeObserver = null;
     }
-    if (this.app) {
-      this.app.destroy(true);
-      this.app = null;
-    }
-    // 清理spine相关引用
-    this.spine = null;
-    this.spineContainer = null;
     this.shadowRoot.innerHTML = "";
 
     const src = this.getAttribute("src");
     const animationName = this.getAttribute("animation-name") || "idle";
-    const scale = parseFloat(this.getAttribute("scale")) || 0.4;
+    const scale = parseFloat(this.getAttribute("scale")) || 0.3;
 
     if (!src) {
       this.shadowRoot.innerHTML =
@@ -44,6 +37,7 @@ class SpineViewer extends HTMLElement {
 
     // 创建容器
     const container = document.createElement("div");
+    this.container = container;
     container.style.cssText = `
       width: 100%;
       height: 100%;
@@ -51,6 +45,28 @@ class SpineViewer extends HTMLElement {
       overflow: hidden;
     `;
     this.shadowRoot.appendChild(container);
+
+    await this.renderSpine({ src, animationName, scale });
+
+    // 监听窗口大小变化
+    this.resizeObserver = new ResizeObserver(() => {
+      this.handleResize();
+    });
+    this.resizeObserver.observe(this);
+  }
+
+  async renderSpine({
+    src,
+    animationName = this.getAttribute("animation-name"),
+    scale = this.getAttribute("scale") || 0.3,
+  }) {
+    if (this.app) {
+      this.app.destroy(true);
+      this.app = null;
+    }
+    // 清理spine相关引用
+    this.spine = null;
+    this.spineContainer = null;
 
     try {
       // 创建PIXI应用
@@ -63,7 +79,7 @@ class SpineViewer extends HTMLElement {
         powerPreference: "high-performance",
       });
 
-      container.appendChild(this.app.view);
+      this.container.appendChild(this.app.view);
 
       // 预加载资源
       const resource = await this.loadResources(src);
@@ -72,7 +88,7 @@ class SpineViewer extends HTMLElement {
       this.spine = new Spine(resource.spineData);
 
       if (this.spine.spineData) {
-        // 创建容器来包装spine，类似main.js中的dragonCage
+        // 创建容器来包装spine
         this.spineContainer = new PIXI.Container();
         this.spineContainer.addChild(this.spine);
         this.app.stage.addChild(this.spineContainer);
@@ -96,18 +112,11 @@ class SpineViewer extends HTMLElement {
         const localRect = this.spine.getLocalBounds();
         this.spine.position.set(-localRect.x, -localRect.y);
 
-        // 按照main.js的方式进行缩放和定位
         this.spineContainer.scale.set(scale, scale);
         this.spineContainer.position.set(
           (this.app.screen.width - this.spineContainer.width) * 0.5,
           (this.app.screen.height - this.spineContainer.height) * 0.5
         );
-
-        // 监听窗口大小变化
-        this.resizeObserver = new ResizeObserver(() => {
-          this.handleResize();
-        });
-        this.resizeObserver.observe(this);
       }
     } catch (error) {
       console.error("Failed to load Spine animation:", error);
@@ -156,8 +165,6 @@ class SpineViewer extends HTMLElement {
   // 公共方法
   setAnimation(animationName, loop = true) {
     if (this.spine && this.spine.state) {
-      // 清除当前所有动画轨道
-      this.spine.state.clearTracks();
       // 设置新动画
       this.spine.state.setAnimation(0, animationName, loop);
     }
