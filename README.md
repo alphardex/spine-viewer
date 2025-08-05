@@ -4,18 +4,18 @@
 
 注：支持 Spine 4.1 及以下版本，4.2 暂不支持。
 
-## 安装
-
-```bash
-npm install @alphardex/spine-viewer
-```
-
 ## 依赖
 
 确保你的项目中已安装以下依赖：
 
 ```bash
 npm install pixi.js@7.4.3 pixi-spine
+```
+
+## 安装
+
+```bash
+npm install @alphardex/spine-viewer
 ```
 
 ## 在线体验
@@ -86,22 +86,22 @@ console.log("可用动画:", animations);
 
 ### `renderSpine(options)`
 
-切换到新的Spine动画文件。
+切换到新的 Spine 动画文件。
 
 - `options` (object): 配置选项
-  - `src` (string): 新的Spine .skel 文件路径
+  - `src` (string): 新的 Spine .skel 文件路径
   - `animationName` (string, 可选): 要播放的动画名称，如果不指定则自动选择第一个动画
 
 ```javascript
 // 切换到新的Spine文件
 viewer.renderSpine({
   src: "/path/to/new-character.skel",
-  animationName: "idle"
+  animationName: "idle",
 });
 
 // 只指定文件路径，自动选择动画
 viewer.renderSpine({
-  src: "/path/to/new-character.skel"
+  src: "/path/to/new-character.skel",
 });
 ```
 
