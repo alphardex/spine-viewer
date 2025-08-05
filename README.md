@@ -18,6 +18,10 @@ npm install @alphardex/spine-viewer
 npm install pixi.js@7.4.3 pixi-spine
 ```
 
+## 在线体验
+
+地址：https://spine-viewer-alphardex.netlify.app/
+
 ## 使用方法
 
 ### 1. 导入组件
