@@ -93,6 +93,22 @@
         box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
       }
 
+      .controls select {
+        background: white;
+        padding: 8px;
+        border: 2px solid #667eea;
+        border-radius: 6px;
+        font-size: 14px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      .controls select:focus {
+        border-color: #5a6fd8;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+      }
+
       #upload-status {
         margin-top: 10px;
         padding: 8px;
@@ -223,7 +239,13 @@
           <div class="controls">
             <input type="url" id="spine-url" placeholder="请输入Spine文件路径 (如: /mafuyu/sd_main.skel)" />
             <button onclick="loadSpineFromUrl()">加载Spine</button>
-            <button onclick="useExampleUrl()">使用示例路径</button>
+            <select id="character-select" onchange="selectCharacter()">
+              <option value="">选择Spine</option>
+              <option value="kanade">宵崎奏 (Kanade)</option>
+              <option value="mafuyu">朝比奈真冬 (Mafuyu)</option>
+              <option value="ena">東雲絵名 (Ena)</option>
+              <option value="mizuki">暁山瑞希 (Mizuki)</option>
+            </select>
             <button onclick="resetToDefault()">重置为默认</button>
           </div>
           <div id="upload-status"></div>
@@ -390,9 +412,16 @@ viewer.renderSpine({
         }, 3000);
       }
 
-      function useExampleUrl() {
+      function selectCharacter() {
+        const select = document.getElementById('character-select');
         const urlInput = document.getElementById('spine-url');
-        urlInput.value = '/mafuyu/sd_main.skel';
+        const character = select.value;
+        
+        if (character) {
+          urlInput.value = `/${character}/sd_main.skel`;
+          // 自动加载选中的角色
+          loadSpineFromUrl();
+        }
       }
     </script>
   </body>
